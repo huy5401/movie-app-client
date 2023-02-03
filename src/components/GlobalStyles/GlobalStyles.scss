@@ -1,7 +1,8 @@
 @import 'normalize.css';
 
 :root {
-    --primary: #333
+    --primary: #333;
+    --black : #000;
 }
 
 * {
@@ -16,4 +17,8 @@ html {
 
 body {
     font-size: 1.6rem;
+}
+
+button, input, [tabindex] { 
+    outline: none;
 }
