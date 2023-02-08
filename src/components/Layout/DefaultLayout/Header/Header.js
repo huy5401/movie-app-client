@@ -5,6 +5,7 @@ import images from '../../../../assets/images'
 import Button from '../../../Button';
 import { Link } from 'react-router-dom';
 import Search from '../../../Search';
+import routesConfig from '../../../config/routes';
 
 const cx = classNames.bind(styles)
 
@@ -13,10 +14,12 @@ export default function Header() {
     <header className={cx('wrapper')}>
       <div className={cx('top')}>
         <div className={cx('top-container')}>
-          <img className={cx('logo')} src={images.logo} alt='logo'></img>
+          <Link to= {routesConfig.home} className={cx('logo-link')}>
+            <img className={cx('logo')} src={images.logo} alt='logo'></img>
+          </Link>
           <Search></Search>
           <div className={cx('action')}>
-              {/* action */}
+            {/* action */}
           </div>
         </div>
       </div>
@@ -24,7 +27,7 @@ export default function Header() {
         <div className={cx('bot-container')}>
           <ul>
             <li className={cx('active')}><Link to='/' className={cx('main-menu')}>Home</Link></li>
-            <li><Link to='/popular' className={cx('main-menu')}>popular</Link></li>
+            <li><Link to={routesConfig.genre} className={cx('main-menu')}>popular</Link></li>
             <li><Link to='/upcomming' className={cx('main-menu')}>upcomming</Link></li>
           </ul>
         </div>
