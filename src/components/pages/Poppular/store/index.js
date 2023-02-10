@@ -12,7 +12,7 @@ const usePopular = () => {
         try {
 
             const dataResult = await tmdbApi.getMoviesList(url, { params: { page: 2 } });
-            const { results } = dataResult
+            const { results } = dataResult;
             setIsLoading(false)
             setPopularMovie(results)
 
