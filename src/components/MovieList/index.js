@@ -6,7 +6,7 @@ import ReactPaginate from 'react-paginate';
 
 const cx = classNames.bind(styles);
 
-export default function MovieList({ data }) {
+export default function MovieList({ data, handleSetPage }) {
   // const [currentItems, setCurrentItems] = useState([]);
   // const [itemOffset, setItemOffset] = useState(0);
   // console.log("movie list ", typeof data.results);
@@ -14,27 +14,33 @@ export default function MovieList({ data }) {
   // const endOffset = itemOffset + itemsPerPage;
   // const pageCount = data.total_pages;
   // console.log(pageCount)
-  const handlePageClick = () => {
-
+  const handlePageClick = (data) => {
+    handleSetPage(data.selected);
   }
-  const pageCount = 50;
-  console.log("movie list data",data);
+  const {results} = data;
+  const pageCount = 500;
   return (
     <div className={cx('wrapper')}>
       {
-        data.map(movie => (
-          <MovieCard data = {movie}></MovieCard>
+        results && results.map(movie => (
+          <MovieCard data={movie} key={movie.id}></MovieCard>
         ))
       }
-      <ReactPaginate
+      {/* <ReactPaginate
         breakLabel="..."
         nextLabel="next >"
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={pageCount}
         previousLabel="< previous"
-        renderOnZeroPageCount={null}
-      />
+        marginPagesDisplayed={4}
+        containerClassName={cx('pagination')}
+        pageClassName={cx('page-item')}
+        previousClassName={cx('page-item','direction-item')}
+        nextClassName={cx('page-item','direction-item')}
+        breakClassName={cx('page-item')}
+        activeClassName={cx('active')}
+      /> */}
     </div>
   )
 }

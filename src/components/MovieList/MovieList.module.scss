@@ -2,3 +2,21 @@
     display: flex;
     flex-wrap: wrap;
 }
+.pagination{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.page-item{
+    list-style: none;
+    padding: 6px;
+    margin: 3px;
+    background-color: var(--primary);
+    color: white;
+}
+.direction-item{
+    background-color: transparent;
+}
+.active{
+    background-color: var(--active);
+}
