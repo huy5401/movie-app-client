@@ -55,6 +55,7 @@ export default function Popular() {
                     nextClassName={cx('page-item','direction-item')}
                     breakClassName={cx('page-item')}
                     activeClassName={cx('active')}
+                    forcePage={page}
                 />
             </>
             : <>loadding ...</>}
