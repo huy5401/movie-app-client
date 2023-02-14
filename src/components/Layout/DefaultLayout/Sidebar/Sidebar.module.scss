@@ -1,4 +1,23 @@
 .wrapper {
     width: 30%;
     padding: 12px 8px;
+    h5{
+        font-size: 2.2rem;
+        font-weight: 400;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+        border-bottom: 1px dashed #333;
+        color: var(--active);
+
+    }
+}
+.content{
+    ul{
+        li{
+            list-style: none;
+        }
+    }
+}
+.trending{ 
+    margin-top: 40px;
 }

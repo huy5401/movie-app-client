@@ -19,9 +19,7 @@ export default function Popular() {
         setIsLoading(true)
         const url = movieType.popular;
         try {
-
             const dataResult = await tmdbApi.getMoviesList(url, { params: { page: page } });
-            // const { results } = dataResult;
             console.log(dataResult)
             setIsLoading(false)
             setPopularMovie(dataResult)
@@ -55,6 +53,7 @@ export default function Popular() {
                     nextClassName={cx('page-item','direction-item')}
                     breakClassName={cx('page-item')}
                     activeClassName={cx('active')}
+                    renderOnZeroPageCount={false}
                     forcePage={page}
                 />
             </>

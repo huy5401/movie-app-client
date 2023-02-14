@@ -3,12 +3,17 @@ import Header from './Header/Header'
 import Sidebar from './Sidebar/Sidebar'
 import styles from './DefaultLayout.module.scss'
 import classNames from 'classnames/bind'
+import Slider from '../../Slider'
 
 const cx = classNames.bind(styles)
 export default function DefaultLayout({ children }) {
   return (
     <div className={cx('wrapper')}>
       <Header></Header>
+      <div className={cx('slider')}>
+        <div className={cx('title-slider')}>PHIM HOT</div>
+        <Slider></Slider>
+      </div>
       <div className={cx('container')}>
         <div className={cx('content')}>
           {children}

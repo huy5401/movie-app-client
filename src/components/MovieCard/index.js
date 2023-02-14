@@ -5,14 +5,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
+import apiConfig from '../../utils/apiConfig';
 
 const cx = classNames.bind(styles)
 
-export default function MovieCard({data}) {
+export default function MovieCard({ data }) {
     return (
         <Link to='/' className={cx('link-wrap')}>
+            
             <Card className={cx('movie-card')}>
-                <Card.Img variant='top' src='https://i0.wp.com/media.discordapp.net/attachments/924155580124385280/1072455762103767142/thanh-xuan-nguyet-dam.jpg?w=400'></Card.Img>
+                <Card.Img variant='top' src={apiConfig.originalImage(data.backdrop_path
+                )}></Card.Img>
                 <Card.Footer className={cx('footer')}>
                     <p>{data.title}</p>
                 </Card.Footer>

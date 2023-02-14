@@ -1,0 +1,20 @@
+.wrapper{
+    display: flex;
+    margin-top: 5px;
+    img {
+        width: 30%;
+    }
+}
+.content-right{
+    margin-left: 10px;
+    .title{
+        margin-bottom: 5px;
+    }
+    .year{
+        color: #BABABA;
+    }
+    .rating{
+        margin-bottom: 10px;
+    }
+}
+
