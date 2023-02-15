@@ -3,7 +3,7 @@ import classNames from 'classnames/bind'
 import styles from './Sidebar.module.scss'
 import MovieItem from '../../../MovieItem/MovieItem'
 import { useState } from 'react'
-import tmdbApi, { movieType } from '../../../../api/tmdbApi'
+import tmdbApi, { mediaType, movieType, timeWindow } from '../../../../api/tmdbApi'
 import { Alert } from 'react-bootstrap'
 import { useEffect } from 'react'
 
@@ -16,9 +16,11 @@ export default function Sidebar() {
     const url_upcoming = movieType.upcoming;
     try {
       setIsLoading(true);
-      const dataResult = await tmdbApi.getMoviesList(url_upcoming, { params: { page: 1 } });
+      const upcomingResult = await tmdbApi.getMoviesList(url_upcoming, { params: { page: 1 } });
+      const trendingResult = await tmdbApi.getTrending(mediaType.movie, timeWindow.week)
       setIsLoading(false);
-      setUpcoming(dataResult);
+      setUpcoming(upcomingResult);
+      setTrending(trendingResult);
     } catch (error) {
       Alert.log("error");
     }
@@ -34,7 +36,7 @@ export default function Sidebar() {
         <div className={cx('content')}>
           {
             !isLoading ? <ul> {
-              upcoming.results.slice(0,6).map(movie => (
+              upcoming.results.slice(0, 6).map(movie => (
                 <li key={movie.id}>
                   <MovieItem data={movie}></MovieItem>
                 </li>
@@ -49,11 +51,15 @@ export default function Sidebar() {
 
         </div>
         <div className={cx('content')}>
-          <ul>
-            <li>
-              <MovieItem></MovieItem>
-            </li>
-          </ul>
+            {
+              !isLoading ? <ul> {
+                trending.results.slice(0, 6).map(movie => (
+                  <li key={movie.id}>
+                    <MovieItem data={movie}></MovieItem>
+                  </li>
+                ))
+              }</ul> : <>loadding ...</>
+            }
         </div>
       </div>
     </div>

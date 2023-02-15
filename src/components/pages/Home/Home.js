@@ -2,8 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from 'react'
 import MovieList from '../../MovieList';
 import styles from './Home.module.scss';
 import classNames from 'classnames/bind';
-import tmdbApi, { category, movieType } from '../../../api/tmdbApi';
-import Slider from '../../Slider';
+import tmdbApi, { movieType } from '../../../api/tmdbApi';
 
 const cx = classNames.bind(styles);
 export default function Home() {

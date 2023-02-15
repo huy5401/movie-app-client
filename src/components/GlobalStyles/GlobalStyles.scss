@@ -4,6 +4,7 @@
     --primary: #333;
     --black : #000;
     --active: #da966e;
+    --background-color: #02080f;
 }
 
 * {
@@ -18,6 +19,7 @@ html {
 
 body {
     font-size: 1.6rem;
+    background-color: var(--background-color);
 }
 
 button, input, [tabindex] { 

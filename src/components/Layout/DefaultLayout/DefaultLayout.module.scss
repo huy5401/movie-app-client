@@ -5,7 +5,7 @@
 }
 .container {
     width: 980px;
-    background-color: bisque;
+    background-color: var(--background-color);
     display: flex;
     min-height: 500px;
     justify-content: space-between;
@@ -18,4 +18,9 @@
 .slider{
     margin-top: 30px;
     width:980px;
+    .title-slider{
+        font-size: 2.2rem;
+        padding: 15px 0;
+        color: var(--active);
+    }
 }

@@ -9,7 +9,8 @@ export const category = {
 export const movieType = {
     upcoming: 'upcoming',
     popular: 'popular',
-    top_rated: 'top_rated'
+    top_rated: 'top_rated',
+    latest: 'latest'
 }
 
 export const tvType = {
@@ -65,7 +66,8 @@ const tmdbApi = {
         const url = cate + '/' + id + '/similar';
         return axiosClient.get(url, { params: {} })
     },
-    getTrending: async (url, options = {} ) => {
+    getTrending: async (mediaType, timeWindow, options = {} ) => {
+        const url = `trending/${mediaType}/${timeWindow}`;
         return await axiosClient.get(url,options)
     }
 
