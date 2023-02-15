@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styles from './Header.module.scss'
 import classNames from 'classnames/bind'
 import images from '../../../../assets/images'
@@ -27,7 +27,7 @@ export default function Header() {
         <div className={cx('bot-container')}>
           <ul>
             <li className={cx('active')}><Link to='/' className={cx('main-menu')}>Home</Link></li>
-            <li><Link to={routesConfig.genre} className={cx('main-menu')}>popular</Link></li>
+            <li><Link to={routesConfig.popular} className={cx('main-menu')}>popular</Link></li>
             <li><Link to='/upcomming' className={cx('main-menu')}>upcomming</Link></li>
           </ul>
         </div>

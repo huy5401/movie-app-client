@@ -12,7 +12,6 @@ const cx = classNames.bind(styles)
 export default function MovieCard({ data }) {
     return (
         <Link to='/' className={cx('link-wrap')}>
-            
             <Card className={cx('movie-card')}>
                 <Card.Img variant='top' src={apiConfig.originalImage(data.backdrop_path
                 )}></Card.Img>

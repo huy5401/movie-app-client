@@ -49,7 +49,7 @@ export default function Slider() {
                 className={cx('navigation')}
             >
                 {hotMovie.results.slice(0,15).map(movie => (
-                    <SwiperSlide>
+                    <SwiperSlide key={movie.id}>
                         <MovieCard data={movie}></MovieCard>
                     </SwiperSlide>
                 ))}

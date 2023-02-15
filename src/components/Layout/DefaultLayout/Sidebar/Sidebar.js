@@ -5,43 +5,42 @@ import MovieItem from '../../../MovieItem/MovieItem'
 import { useState } from 'react'
 import tmdbApi, { movieType } from '../../../../api/tmdbApi'
 import { Alert } from 'react-bootstrap'
+import { useEffect } from 'react'
 
 const cx = classNames.bind(styles)
 export default function Sidebar() {
-  const [upcoming, setUpcoming] = useState({});
+  const [upcoming, setUpcoming] = useState({})
   const [trending, setTrending] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true)
   const fetchApi = async () => {
-    setIsLoading(true)
-    const url = movieType.upcoming;
+    const url_upcoming = movieType.upcoming;
     try {
-        const upcomingResult = await tmdbApi.getMoviesList(url, { params: { page: 1 } });
-        console.log(upcomingResult)
-        setIsLoading(false)
-        setUpcoming(upcomingResult)
+      setIsLoading(true);
+      const dataResult = await tmdbApi.getMoviesList(url_upcoming, { params: { page: 1 } });
+      setIsLoading(false);
+      setUpcoming(dataResult);
     } catch (error) {
-        Alert.log("error");
+      Alert.log("error");
     }
-}
+  }
+
+  useEffect(() => {
+    fetchApi();
+  }, [])
   return (
     <div className={cx('wrapper')}>
       <div className={cx('upcoming')}>
         <h5>UPCOMING</h5>
         <div className={cx('content')}>
-          <ul>
-            <li>
-              <MovieItem></MovieItem>
-            </li>
-            <li>
-              <MovieItem></MovieItem>
-            </li>
-            <li>
-              <MovieItem></MovieItem>
-            </li>
-            <li>
-              <MovieItem></MovieItem>
-            </li>
-          </ul>
+          {
+            !isLoading ? <ul> {
+              upcoming.results.slice(0,6).map(movie => (
+                <li key={movie.id}>
+                  <MovieItem data={movie}></MovieItem>
+                </li>
+              ))
+            }</ul> : <>loadding ...</>
+          }
         </div>
       </div>
       <div className={cx('trending')}>
@@ -51,15 +50,6 @@ export default function Sidebar() {
         </div>
         <div className={cx('content')}>
           <ul>
-            <li>
-              <MovieItem></MovieItem>
-            </li>
-            <li>
-              <MovieItem></MovieItem>
-            </li>
-            <li>
-              <MovieItem></MovieItem>
-            </li>
             <li>
               <MovieItem></MovieItem>
             </li>

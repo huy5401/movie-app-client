@@ -12,7 +12,6 @@ export default function Home() {
     const fetchApi = async () => {
       const url = movieType.popular;
       const result = await tmdbApi.getMoviesList(url, { params: { page: 2 } });
-      console.log(result);
       setListMovie(result)
     }
     fetchApi();
