@@ -6,12 +6,13 @@ import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import apiConfig from '../../utils/apiConfig';
+import routesConfig from '../config/routes';
 
 const cx = classNames.bind(styles)
 
 export default function MovieCard({ data }) {
     return (
-        <Link to='/' className={cx('link-wrap')}>
+        <Link to={`/movie/${data.id}`} className={cx('link-wrap')}>
             <Card className={cx('movie-card')}>
                 <Card.Img variant='top' src={apiConfig.originalImage(data.backdrop_path
                 )}></Card.Img>

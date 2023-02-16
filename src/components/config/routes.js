@@ -1,7 +1,8 @@
 const routes = {
     home: '/',
     genre: '/genre',
-    popular: '/popular',
+    popular: '/movies/popular',
+    detail: '/movie/:id',
 }
 
 export default routes;
