@@ -6,7 +6,6 @@ import apiConfig from '../../utils/apiConfig';
 const cx = classNames.bind(styles);
 export default function MovieItem({ data }) {
   // const image_path = data.backdrop_path;
-  console.log(data);
   return (
     <> {
       data && <div className={cx('wrapper')}>
