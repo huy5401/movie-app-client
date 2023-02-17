@@ -2,6 +2,7 @@
     color: white;
     padding: 10px;
     background-color: #181818;
+    width: 680px;
 }
 .infor{
     width: 100%;
@@ -21,7 +22,7 @@
         height: 400px;
         position: relative;
     }
-    .btn-group{
+    .btnGroup{
         padding: 15px 40px;
         width: 296px;
         position: absolute;
@@ -43,24 +44,32 @@
         color: #bbb;
     }
 }
-.detail-content{
+.detailContent{
     height: 260px;
-    background-color: #bbb;
+    background-color: #222;
+    padding: 5px 10px;
+    .detailItem{
+        display: flex;
+        padding: 5px 0;
+        .detailTitle{
+            margin-right: 10px;
+        }
+    }
 }
 .rating{
     height: 63px;
     margin-top: 10px;
     padding: 10px;
-    background-color: #bbb;
+    background-color: #222;
 }
 .review{
     margin-top: 40px;
     padding: 10px;
 }
-.review-content {
+.reviewContent {
     background-color: #282828;
     padding: 10px;
-    .review-main{
+    .reviewMain{
         color: #bbb;
         padding: 10px 0 20px 0;
     }
@@ -69,17 +78,25 @@
     width: 100%;
     margin: 10px 0;
     display: flex;
-    span::after{
+    div{
         content: "";
-        width: 2px;
-        height: 2px;
-        border-top: 2px solid transparent;
-        border-bottom:2px solid transparent;
-        border-left: 2px solid white;
-        border-right:2px solid transparent;
+        border-top: 9px solid transparent;
+        border-bottom: 9px solid transparent;
+        border-right: 9px solid transparent;
+        border-left: 11px solid white;
+        margin-left: 8px;
+        font-size: 1rem;
     }
 }
-.tag-label{
-    width: 40px;
-    padding: 2px;
+.similar{
+    width: 100%;
 }
+.similarTitle{
+    padding: 20px 0;
+    display: flex;
+    div{
+        margin-left: 6px;
+    }
+}
+
+

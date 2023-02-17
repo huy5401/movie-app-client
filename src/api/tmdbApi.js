@@ -69,7 +69,20 @@ const tmdbApi = {
     getTrending: async (mediaType, timeWindow, options = {} ) => {
         const url = `trending/${mediaType}/${timeWindow}`;
         return await axiosClient.get(url,options)
-    }
+    },
+
+    getSimilar: async (movieId, options = {} ) => {
+        const url = `movie/${movieId}/similar`;
+        return await axiosClient.get(url,options)
+    },
+    getMostPopular: async (options = {} ) => {
+        const url = `discover/movie?sort_by=popularity.desc`;
+        return await axiosClient.get(url,options)
+    },
+    getActor: (id, options = {}) => {
+        const url = `movie/${id}/credits`
+        return axiosClient.get(url, options)
+    },
 
 }
 

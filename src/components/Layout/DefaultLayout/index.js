@@ -12,7 +12,7 @@ export default function DefaultLayout({ children }) {
       <Header></Header>
       <div className={cx('slider')}>
         <div className={cx('title-slider')}>PHIM HOT</div>
-        <Slider></Slider>
+        <Slider hotMovie></Slider>
       </div>
       <div className={cx('container')}>
         <div className={cx('content')}>

@@ -11,18 +11,29 @@ import MovieCard from '../MovieCard';
 
 const cx = classNames.bind(styles);
 
-export default function Slider() {
-    const [hotMovie, setHotMovie] = useState({})
+export default function Slider({hotMovie=false, similar=false, id, countItem}) {
+    const [listMovie, setListMovie] = useState({})
     const [isLoading, setIsLoading] = useState(true)
     const fetchApi = async () => {
-        const url = movieType.top_rated;
-        try {
-            setIsLoading(true);
-            const dataResult = await tmdbApi.getMoviesList(url, { params: { page: 1 } });
-            setIsLoading(false);
-            setHotMovie(dataResult);
-        } catch (error) {
-            Alert.log("error");
+        if(hotMovie){
+            // const url = movieType.top_rated;
+            try {
+                setIsLoading(true);
+                const dataResult = await tmdbApi.getMostPopular({ params: { page: 1 } });
+                setIsLoading(false);
+                setListMovie(dataResult);
+            } catch (error) {
+                Alert.log("error");
+            }
+        }else if(similar && id){
+            try {
+                setIsLoading(true);
+                const dataResult = await tmdbApi.getSimilar(id, { params: { page: 1 } });
+                setIsLoading(false);
+                setListMovie(dataResult);
+            } catch (error) {
+                Alert.log("error");
+            }
         }
     }
 
@@ -34,7 +45,7 @@ export default function Slider() {
         <div>
             {!isLoading ? <><Swiper
                 spaceBetween={5}
-                slidesPerView={6}
+                slidesPerView={countItem || 6}
                 // onSlideChange={() => console.log('change')}
                 onSwiper={(swiper) => { console.log(swiper) }}
                 navigation
@@ -48,7 +59,7 @@ export default function Slider() {
                 modules={[Autoplay,Navigation]}
                 className={cx('navigation')}
             >
-                {hotMovie.results.slice(0,15).map(movie => (
+                {listMovie.results.slice(0,15).map(movie => (
                     <SwiperSlide key={movie.id}>
                         <MovieCard data={movie}></MovieCard>
                     </SwiperSlide>
