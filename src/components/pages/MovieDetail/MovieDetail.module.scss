@@ -24,7 +24,7 @@
     }
     .btnGroup{
         padding: 15px 40px;
-        width: 296px;
+        width: 297px;
         position: absolute;
         display: flex;
         justify-content: space-between;
@@ -59,7 +59,7 @@
     }
 }
 .rating{
-    height: 63px;
+    box-sizing: border-box;
     margin-top: 10px;
     padding: 10px;
     background-color: #222;
@@ -80,7 +80,8 @@
     width: 100%;
     margin: 10px 0;
     display: flex;
-    div{
+    align-items: center;
+    .tagsIcon{
         content: "";
         border-top: 9px solid transparent;
         border-bottom: 9px solid transparent;
@@ -88,6 +89,7 @@
         border-left: 11px solid white;
         margin-left: 8px;
         font-size: 1rem;
+        height: 40%;
     }
 }
 .similar{
@@ -100,5 +102,30 @@
         margin-left: 6px;
     }
 }
+.action{
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
 
-
+.btnAction{
+    display: flex;
+    justify-content: space-around;
+}
+.vote{
+    display: flex;
+    .voteCount{
+        margin-left: 10px;
+    }
+}
+.keywords{
+    display: flex;
+    margin-left: 5px 8px;
+    .keywordItem{
+        padding: 5px;
+        background-color: #3D4045;
+        font-size: 1.35rem;
+        margin-right: 6px;
+    }
+}

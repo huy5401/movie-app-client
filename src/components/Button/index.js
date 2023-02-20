@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-export default function Button({to, href,primary = true, blue= false, red = false,small = false, medium = true, large = false, className,onClick, ...passProps}) {
+export default function Button({to, href,primary = true, blue= false, red = false,small = false, medium=false, large = false, className,onClick, ...passProps}) {
   let Comp = 'button';
   const props = {
     onClick,
@@ -23,6 +23,7 @@ export default function Button({to, href,primary = true, blue= false, red = fals
     primary,
     blue,
     red,
+    small,
     medium,
     large
   });

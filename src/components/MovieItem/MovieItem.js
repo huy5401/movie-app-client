@@ -11,7 +11,7 @@ export default function MovieItem({ data }) {
   const countStar = Math.round(data.vote_average/2);
   const star = [];
   for(var i=0; i< countStar; i++){
-    star.push(<FontAwesomeIcon icon={faStar} color='#da966e' key={i}></FontAwesomeIcon>)
+    star.push(<FontAwesomeIcon icon={faStar} color='#eea300' key={i}></FontAwesomeIcon>)
   }
   // const image_path = data.backdrop_path;
   return (
