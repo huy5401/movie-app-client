@@ -14,7 +14,7 @@ const cx = classNames.bind(styles);
 export default function MovieDetail() {
   const { id } = useParams();
   const [movieDetail, setMovieDetail] = useState({});
-  const [actor, setActor] = useState([]);
+  const [actors, setActors] = useState([]);
   const [crews, setCrews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const fetchApi = async () => {
@@ -25,7 +25,7 @@ export default function MovieDetail() {
       const dataActor = await tmdbApi.getActor(id, {params: {}})
       setIsLoading(false)
       setMovieDetail(dataResult);
-      setActor(dataActor.cast);
+      setActors(dataActor.cast);
       setCrews(dataActor.crew)
     } catch (error) {
       Alert.log("error");
@@ -42,7 +42,29 @@ export default function MovieDetail() {
     }
     return false;
   }
+  
+  // get countries, genres, actors
+  const getProp = (props) => {
+      const data = [];
+      props.map( prop => data.push(prop.name));
+      return data;
+  }
+  
+  const getLanguage = () => {
+    const languages = [];
+      movieDetail.spoken_languages.map( language => languages.push(language.english_name));
+      return languages;
+  }
   const direc = getDirector();
+
+  const countStar = Math.round(movieDetail.vote_average/2);
+  const star = [];
+  for(var i=0; i< 5; i++){
+    if(i < countStar) star.push(<FontAwesomeIcon icon={faStar} color='#da966e' key={i}></FontAwesomeIcon>)
+    else{
+      star.push(<FontAwesomeIcon icon={faStar} color='#bbb' key={i}></FontAwesomeIcon>)
+    }
+  }
   return (
     <div className={cx('wrapper')}>
       {
@@ -66,11 +88,39 @@ export default function MovieDetail() {
                   <dt>{movieDetail.status}</dt>
                 </div>
                 <div className={cx('detailItem')}>
+                  <dd className={cx('detailTitle')}>Released date:</dd>
+                  <dt>{movieDetail.release_date}</dt>
+                </div>
+                <div className={cx('detailItem')}>
+                  <dd className={cx('detailTitle')}>Runtime:</dd>
+                  <dt>{movieDetail.runtime} minutes</dt>
+                </div>
+                <div className={cx('detailItem')}>
+                  <dd className={cx('detailTitle')}>Language:</dd>
+                  <dt>{movieDetail.spoken_languages && getLanguage().toString()}</dt>
+                </div>
+                <div className={cx('detailItem')}>
+                  <dd className={cx('detailTitle')}>Countries:</dd>
+                  <dt>{movieDetail.production_countries && getProp(movieDetail.production_countries).toString()}</dt>
+                </div>
+                <div className={cx('detailItem')}>
+                  <dd className={cx('detailTitle')}>Companies:</dd>
+                  <dt>{movieDetail.production_companies && getProp(movieDetail.production_companies).toString()}</dt>
+                </div>
+                <div className={cx('detailItem')}>
+                  <dd className={cx('detailTitle')}>Genres:</dd>
+                  <dt>{movieDetail.genres && getProp(movieDetail.genres).toString()}</dt>
+                </div>
+                <div className={cx('detailItem')}>
                   <dd className={cx('detailTitle')}>Director:</dd>
                   <dt>{direc ? direc.name : "Unknown"}</dt>
                 </div>
+                <div className={cx('detailItem')}>
+                  <dd className={cx('detailTitle')}>Actors:</dd>
+                  <dt>{actors && getProp(actors).toString()}</dt>
+                </div>
               </div>
-              <div className={cx('rating')}></div>
+              <div className={cx('rating')}>{star}</div>
             </div>
           </div>
           <div className={cx('review')}>
