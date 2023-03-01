@@ -1,9 +1,9 @@
 .wrapper {
     width: 100%;
     height: 100%;
-    background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    border-radius: 5px;
 
     button {
         position: absolute;
@@ -14,32 +14,58 @@
 
 .link-wrap {
     width: 160px;
-    height: 267px;
+    height: 260px;
     display: block;
     text-decoration: none;
     color: white;
     background-color: #181818;
     margin: 0 6px 12px 0;
+    border-radius: 5px;
 }
-.movie-card{
+
+.movie-card {
     width: 100%;
+    border-radius: 5px;
     height: 100%;
-    img{
+    overflow: hidden;
+    position: relative;
+
+    .imgWrapper {
         width: 100%;
-        height: 80%;
+        height: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            vertical-align: middle;
+            transition: transform .3s ease-in-out;
+            &:hover {
+                transform: scale(1.4);
+            }
+        }
     }
-    
+
+
+
 }
-.footer{
+
+.footer {
     width: 100%;
     height: 20%;
     margin: 0;
     padding: 4px;
-    p{
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    p {
         display: flex;
         text-align: center;
         font-size: 1.4rem;
         border: 0;
         justify-content: center;
+        width: 100%;
     }
 }

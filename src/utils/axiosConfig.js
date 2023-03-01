@@ -1,6 +1,4 @@
 import axios from "axios";
-import queryString from 'querystring-es3';
-import qs from 'qs'
 import apiConfig from "./apiConfig";
 
 const axiosClient = axios.create({

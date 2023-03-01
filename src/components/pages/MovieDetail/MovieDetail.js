@@ -6,10 +6,12 @@ import tmdbApi, { category } from '../../../api/tmdbApi';
 import apiConfig from '../../../utils/apiConfig';
 import Button from '../../Button';
 import Slider from '../../Slider';
+import CardMovieSkeleton from '../../Skeleton/ListMovie/CardMovieSkeleton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faShare } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import MovieDetailSkeleton from '../../Skeleton/MovieDetail/MovieDetailSkeleton';
 const cx = classNames.bind(styles);
 
 export default function MovieDetail() {
@@ -71,7 +73,6 @@ export default function MovieDetail() {
       star.push(<FontAwesomeIcon icon={faStar} color='#bbb' key={i}></FontAwesomeIcon>)
     }
   }
-  console.log(keywords)
   return (
     <div className={cx('wrapper')}>
       {
@@ -158,7 +159,7 @@ export default function MovieDetail() {
             <div className={cx('similarTitle')}><FontAwesomeIcon icon={faStar} color='#eea300'></FontAwesomeIcon><div>Similar movie</div></div>
             <Slider similar id={id} countItem='4'></Slider>
           </div>
-        </> : <>loadding</>
+        </> : <><MovieDetailSkeleton></MovieDetailSkeleton></>
       }
 
     </div>

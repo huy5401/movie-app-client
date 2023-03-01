@@ -3,10 +3,9 @@ import { Alert } from 'react-bootstrap';
 import ReactPaginate from 'react-paginate';
 import tmdbApi, { movieType } from '../../../api/tmdbApi';
 import MovieList from '../../MovieList';
-import usePopular from './store';
 import styles from '../../MovieList/MovieList.module.scss'
 import classNames from 'classnames/bind';
-
+import CardMovieSkeleton from '../../Skeleton/ListMovie/CardMovieSkeleton';
 
 const cx = classNames.bind(styles)
 export default function Popular() {
@@ -29,6 +28,7 @@ export default function Popular() {
     }
     
     const pageCount = 500;
+    
     const handlePageClick = (data) => {
         setPage(data.selected);
       }
@@ -57,7 +57,7 @@ export default function Popular() {
                     forcePage={page}
                 />
             </>
-            : <>loadding ...</>}
+            : <CardMovieSkeleton></CardMovieSkeleton>}
         </div>
         
     )

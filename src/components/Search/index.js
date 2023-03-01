@@ -27,14 +27,15 @@ export default function Search() {
         const fetchApi = async () => {
             const url = category.movie;
             const result = await tmdbApi.search(url,debounce);
-            setSearchResult(result.results.slice(0,8));
+            setSearchResult(result.results.slice(0,6));
         }
         fetchApi();
     }, [debounce])
     return (
         <HeadlessTippy
             interactive
-            visible={showResult && searchResult.length > 0}
+            // visible={showResult && searchResult.length > 0}
+            visible={true}
             render={attrs => (
                 <div className={cx('search-result')} tabIndex='-1' {...attrs}>
                     <PopperWrapper>
@@ -42,6 +43,7 @@ export default function Search() {
                         {searchResult.map((result) => (
                             <SearchFilmItem key={result.id} data={result}></SearchFilmItem>
                         ))}
+                        <div className={cx("seeMore")}>See more...</div>
                     </PopperWrapper>
                 </div>
 

@@ -29,6 +29,7 @@ export default function Header() {
             <li><NavLink to='/' className={(nav) => cx('main-menu',{active:nav.isActive})}>Home</NavLink></li>
             <li><NavLink to={routesConfig.popular} className={(nav) => cx('main-menu',{active:nav.isActive})}>popular</NavLink></li>
             <li><NavLink to='/upcomming' className={(nav) => cx('main-menu',{active:nav.isActive})}>upcomming</NavLink></li>
+            <li><NavLink to='/upcomming' className={(nav) => cx('main-menu',{active:nav.isActive})}>tvshow</NavLink></li>
           </ul>
         </div>
       </div>

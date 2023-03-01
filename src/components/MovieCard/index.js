@@ -14,7 +14,9 @@ export default function MovieCard({ data }) {
     return (
         <Link to={`/movie/${data.id}`} className={cx('link-wrap')}>
             <Card className={cx('movie-card')}>
-                <Card.Img variant='top' src={ data.backdrop_path ? apiConfig.originalImage(data.backdrop_path) : apiConfig.originalImage('/8EgO6oCiUlhiiNeVbRPItZIMQj7.jpg')}></Card.Img>
+                <div className={cx('imgWrapper')}>
+                    <Card.Img variant='top' src={data.backdrop_path ? apiConfig.originalImage(data.backdrop_path) : apiConfig.originalImage('/8EgO6oCiUlhiiNeVbRPItZIMQj7.jpg')}></Card.Img>
+                </div>
                 <Card.Footer className={cx('footer')}>
                     <p>{data.title}</p>
                 </Card.Footer>

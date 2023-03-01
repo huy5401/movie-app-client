@@ -6,6 +6,7 @@ import { useState } from 'react'
 import tmdbApi, { mediaType, movieType, timeWindow } from '../../../../api/tmdbApi'
 import { Alert } from 'react-bootstrap'
 import { useEffect } from 'react'
+import ItemMovieSkeleton from '../../../Skeleton/ItemMovie/ItemMovieSkeleton'
 
 const cx = classNames.bind(styles)
 export default function Sidebar() {
@@ -25,6 +26,13 @@ export default function Sidebar() {
       Alert.log("error");
     }
   }
+  const renderSkeletonHandle = () => {
+    let listSkeletonItem = []
+    for (var i = 0; i < 4; i++) {
+      listSkeletonItem.push(<ItemMovieSkeleton></ItemMovieSkeleton>)
+    }
+    return listSkeletonItem;
+  }
 
   useEffect(() => {
     fetchApi();
@@ -41,7 +49,7 @@ export default function Sidebar() {
                   <MovieItem data={movie}></MovieItem>
                 </li>
               ))
-            }</ul> : <>loadding ...</>
+            }</ul> : <>{renderSkeletonHandle()}</>
           }
         </div>
       </div>
@@ -51,15 +59,15 @@ export default function Sidebar() {
 
         </div>
         <div className={cx('content')}>
-            {
-              !isLoading ? <ul> {
-                trending.results.slice(0, 6).map(movie => (
-                  <li key={movie.id}>
-                    <MovieItem data={movie}></MovieItem>
-                  </li>
-                ))
-              }</ul> : <>loadding ...</>
-            }
+          {
+            !isLoading ? <ul> {
+              trending.results.slice(0, 6).map(movie => (
+                <li key={movie.id}>
+                  <MovieItem data={movie}></MovieItem>
+                </li>
+              ))
+            }</ul> : <>{renderSkeletonHandle()}</>
+          }
         </div>
       </div>
     </div>
