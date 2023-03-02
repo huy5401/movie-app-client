@@ -48,9 +48,8 @@ export default function Slider({ hotMovie = false, similar = false, id, countIte
                 spaceBetween={5}
                 slidesPerView={countItem || 6}
                 // onSlideChange={() => console.log('change')}
-                onSwiper={(swiper) => { console.log(swiper) }}
+                // onSwiper={(swiper) => { console.log(swiper) }}
                 navigation={true}
-                slidePrevClass={cx('prev')}
                 scrollbar={{ draggable: true }}
                 rewind={true}
                 autoplay={{

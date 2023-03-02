@@ -6,7 +6,6 @@ import tmdbApi, { category } from '../../../api/tmdbApi';
 import apiConfig from '../../../utils/apiConfig';
 import Button from '../../Button';
 import Slider from '../../Slider';
-import CardMovieSkeleton from '../../Skeleton/ListMovie/CardMovieSkeleton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faShare } from '@fortawesome/free-solid-svg-icons';
@@ -23,16 +22,15 @@ export default function MovieDetail() {
   const [isLoading, setIsLoading] = useState(false);
   const fetchApi = async () => {
     setIsLoading(true)
-    const cate = category.movie;
     try {
-      const dataResult = await tmdbApi.detail(cate, id, { params: {} });
+      const dataResult = await tmdbApi.detail(id, { params: {} });
       const dataActor = await tmdbApi.getActor(id, { params: {} });
       const dataKeywords = await tmdbApi.getKeywords(id, { params: {} })
       setIsLoading(false)
       setMovieDetail(dataResult);
       setActors(dataActor.cast);
       setCrews(dataActor.crew)
-      setKeywords(dataKeywords.keywords);
+      setKeywords(dataKeywords.keywords || dataKeywords.results);
     } catch (error) {
       console.log(error);
     }
@@ -87,21 +85,21 @@ export default function MovieDetail() {
             </div>
             <div className={cx('detail')}>
               <div className={cx('title')}>
-                <h2>{movieDetail.title}</h2>
-                <p>{movieDetail.release_date}</p>
+                <h2>{movieDetail.title || movieDetail.name}</h2>
+                <p>{movieDetail.first_air_date || movieDetail.release_date}</p>
               </div>
               <div className={cx('detailContent')}>
                 <div className={cx('detailItem')}>
                   <dd className={cx('detailTitle')}>Status:</dd>
-                  <dt>{movieDetail.status}</dt>
+                  <dt>{movieDetail.status || "Unkown"}</dt>
                 </div>
                 <div className={cx('detailItem')}>
                   <dd className={cx('detailTitle')}>Released date:</dd>
-                  <dt>{movieDetail.release_date}</dt>
+                  <dt>{movieDetail.first_air_date || movieDetail.release_date}</dt>
                 </div>
                 <div className={cx('detailItem')}>
                   <dd className={cx('detailTitle')}>Runtime:</dd>
-                  <dt>{movieDetail.runtime} minutes</dt>
+                  <dt>{movieDetail.runtime || "Unkown"} minutes</dt>
                 </div>
                 <div className={cx('detailItem')}>
                   <dd className={cx('detailTitle')}>Language:</dd>
@@ -143,13 +141,13 @@ export default function MovieDetail() {
           <div className={cx('review')}>
             <div className={cx('reviewContent')}>
               <h3>Review</h3>
-              <div className={cx('reviewMain')}>{movieDetail.overview}</div>
+              <div className={cx('reviewMain')}>{movieDetail.overview || "Unkown"}</div>
             </div>
             <div className={cx('tag')}>
               <span className={cx('tagLabel')}>Tags</span>
               <div className={cx('tagsIcon')}></div>
               <div className={cx('keywords')}>
-                { keywords && keywords.slice(0,4).map( keyword => (
+                { keywords && keywords.slice(0,6).map( keyword => (
                   <div key={keyword.id} className={cx('keywordItem')}>{keyword.name}</div>
                 ))}
               </div>

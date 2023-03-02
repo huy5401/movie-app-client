@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames/bind';
-import styles from '../../pages/MovieDetail/MovieDetail.module.scss';
+import styles from '../../pages/MediaDetail/MovieDetail.module.scss';
 import Skeleton from 'react-loading-skeleton';
 
 const cx = classNames.bind(styles);

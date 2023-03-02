@@ -20,7 +20,9 @@ axiosClient.interceptors.response.use((response) => {
     }
     return response;
 }, (error) => {
-    throw error
+    if(error.response.status === 404){
+        return error.response.status;
+    }
 }) 
 
 // export const get = async (path, options = {}) => {

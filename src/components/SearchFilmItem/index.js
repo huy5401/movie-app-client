@@ -10,11 +10,11 @@ export default function SearchFilmItem({ data }) {
     <Link to={`/movie/${data.id}`} className={cx('searchItemLink')}>
       <div className={cx('wrapper')}>
         <div className={cx('imgWrapper')}>
-          <img src={apiConfig.originalImage(data.backdrop_path)}></img>
+          <img src={apiConfig.originalImage(data.backdrop_path)} alt='backdrop'></img>
         </div>
         <div>
-          <div className={cx('vi-name')}>{data.title}</div>
-          <p className={cx('en-name')}>{data.release_date}</p>
+          <div className={cx('vi-name')}>{data.name || data.title}</div>
+          <p className={cx('en-name')}>{data.release_date || data.first_air_date}</p>
         </div>
       </div>
     </Link>

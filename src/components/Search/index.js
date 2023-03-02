@@ -25,25 +25,27 @@ export default function Search() {
             return;
         }
         const fetchApi = async () => {
-            const url = category.movie;
-            const result = await tmdbApi.search(url,debounce);
-            setSearchResult(result.results.slice(0,6));
+            const cate = 'multi'
+            const result = await tmdbApi.search(cate, debounce);
+            setSearchResult(result.results.slice(0, 7));
         }
         fetchApi();
     }, [debounce])
     return (
         <HeadlessTippy
             interactive
-            // visible={showResult && searchResult.length > 0}
-            visible={true}
+            visible={showResult && searchResult.length > 0}
+            // visible={true}
             render={attrs => (
                 <div className={cx('search-result')} tabIndex='-1' {...attrs}>
                     <PopperWrapper>
                         <div className={cx('search-result-title')}>Search result for: <p>"{searchValue}"</p></div>
-                        {searchResult.map((result) => (
-                            <SearchFilmItem key={result.id} data={result}></SearchFilmItem>
-                        ))}
-                        <div className={cx("seeMore")}>See more...</div>
+                        <div className={cx('searchResultContent')}>
+                            {searchResult.map((result) => (
+                                <SearchFilmItem key={result.id} data={result}></SearchFilmItem>
+                            ))}
+                        </div>
+                        {searchResult.length > 6 ? <div className={cx("seeMore")}>See more...</div> : ""}
                     </PopperWrapper>
                 </div>
 
@@ -54,7 +56,7 @@ export default function Search() {
                     onChange={e => { setSearchValue(e.target.value) }}
                     onFocus={() => { setShowResult(true) }}></input>
                 <button className={cx('search-btn')}>
-                    <FontAwesomeIcon icon={faMagnifyingGlass}/>
+                    <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
             </div>
         </HeadlessTippy>

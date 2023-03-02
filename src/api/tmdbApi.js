@@ -53,39 +53,63 @@ const tmdbApi = {
             }
         })
     },
-    detail: (cate, id, options = {}) => {
-        const url = cate + '/' + id;
-        return axiosClient.get(url, options)
-    },
+    // detail: (cate, id, options = {}) => {
+    //     const url = cate + '/' + id;
+    //     return axiosClient.get(url, options)
+    // },
 
-    credits: (cate, id) => {
-        const url = cate + '/' + id + '/credits';
-        return axiosClient.get(url, { params: {} })
-    },
-    similar: (cate, id) => {
-        const url = cate + '/' + id + '/similar';
-        return axiosClient.get(url, { params: {} })
-    },
+    // credits: (cate, id) => {
+    //     const url = cate + '/' + id + '/credits';
+    //     return axiosClient.get(url, { params: {} })
+    // },
+    // similar: (cate, id) => {
+    //     const url = cate + '/' + id + '/similar';
+    //     return axiosClient.get(url, { params: {} })
+    // },
     getTrending: async (mediaType, timeWindow, options = {} ) => {
         const url = `trending/${mediaType}/${timeWindow}`;
         return await axiosClient.get(url,options)
     },
 
-    getSimilar: async (movieId, options = {} ) => {
-        const url = `movie/${movieId}/similar`;
-        return await axiosClient.get(url,options)
+    getSimilar: async (id, options = {} ) => {
+        let url = `movie/${id}/similar`;
+        let response = await axiosClient.get(url, options);
+        if(response === 404){
+            url = `tv/${id}/similar`;
+            response = await axiosClient.get(url, options);
+        }
+        return response
     },
     getMostPopular: async (options = {} ) => {
         const url = `discover/movie?sort_by=popularity.desc`;
         return await axiosClient.get(url,options)
     },
-    getActor: (id, options = {}) => {
-        const url = `movie/${id}/credits`
-        return axiosClient.get(url, options)
+    getActor: async (id, options = {}) => {
+        let url = `tv/${id}/credits`
+        let response = await axiosClient.get(url, options);
+        if(response === 404){
+            url = `movie/${id}/credits`;
+            response = await axiosClient.get(url, options);
+        }
+        return response
     },
-    getKeywords: (id, options = {}) => {
-        const url = `movie/${id}/keywords`
-        return axiosClient.get(url, options)
+    getKeywords: async (id, options = {}) => {
+        let url = `movie/${id}/keywords`
+        let response = await axiosClient.get(url, options);
+        if(response === 404){
+            url = `tv/${id}/keywords`;
+            response = await axiosClient.get(url, options);
+        }
+        return response;
+    },
+    detail: async (id, options = {}) => {
+        let url = `tv/${id}`;
+        let response = await axiosClient.get(url, options);
+        if(response === 404){
+            url = `movie/${id}`;
+            response = await axiosClient.get(url, options);
+        }
+        return response
     },
 }
 

@@ -63,3 +63,14 @@
         color: var(--active);
     }
 }
+.searchResultContent{
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.seeMore{
+    color: var(--active);
+    font-size: 1.7rem;
+    padding: 5px 0;
+    
+}
