@@ -85,10 +85,10 @@ const tmdbApi = {
         return await axiosClient.get(url,options)
     },
     getActor: async (id, options = {}) => {
-        let url = `tv/${id}/credits`
+        let url = `movie/${id}/credits`
         let response = await axiosClient.get(url, options);
         if(response === 404){
-            url = `movie/${id}/credits`;
+            url = `tv/${id}/credits`;
             response = await axiosClient.get(url, options);
         }
         return response
@@ -103,14 +103,23 @@ const tmdbApi = {
         return response;
     },
     detail: async (id, options = {}) => {
-        let url = `tv/${id}`;
+        let url = `movie/${id}`;
         let response = await axiosClient.get(url, options);
         if(response === 404){
-            url = `movie/${id}`;
+            url = `tv/${id}`;
             response = await axiosClient.get(url, options);
         }
         return response
     },
+    getGenre: async () => {
+        const url = "genre/movie/list";
+        return await axiosClient.get(url)
+    },
+    discoverMovie:async (options = {}) => {
+        const url = "discover/movie";
+        return await axiosClient.get(url, options)
+    },
+    
 }
 
 export default tmdbApi;

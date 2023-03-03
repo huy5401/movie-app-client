@@ -61,3 +61,34 @@
 .active{
     color: var(--active);
 }
+
+.dropdown{
+    color: white;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.listGenre{
+    width: 500px;
+    ul{
+        display: flex;
+        flex-wrap: wrap;
+        min-width:100%;
+        li{
+            display: block;
+            width: 25%;
+            text-align: center;
+        }
+    }
+}
+.overlayDropdown{
+    ul{
+        li{
+           
+            a{
+                font-size: 1.5rem;
+                font-weight: 500;
+            }
+        }
+    }
+}
