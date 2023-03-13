@@ -46,7 +46,7 @@ export default function Slider({ hotMovie = false, similar = false, id, countIte
         <div>
             {!isLoading ? <><Swiper
                 spaceBetween={5}
-                slidesPerView={countItem || 6}
+                slidesPerView={countItem || 5}
                 // onSlideChange={() => console.log('change')}
                 // onSwiper={(swiper) => { console.log(swiper) }}
                 navigation={true}
@@ -61,12 +61,12 @@ export default function Slider({ hotMovie = false, similar = false, id, countIte
             >
                 {listMovie.results.slice(0, 15).map(movie => (
                     <SwiperSlide key={movie.id}>
-                        <MovieCard data={movie}></MovieCard>
+                        <MovieCard data={movie} large></MovieCard>
                     </SwiperSlide>
                 ))}
             </Swiper></> : <><Swiper
                 spaceBetween={5}
-                slidesPerView={6}
+                slidesPerView={5}
                 // onSlideChange={() => console.log('change')}
                 // onSwiper={(swiper) => { console.log(swiper) }}
                 slidePrevClass={cx('prev')}
@@ -81,7 +81,7 @@ export default function Slider({ hotMovie = false, similar = false, id, countIte
             >
                 {[1, 2, 3, 4, 5, 6].map((item, index) => (
                     <SwiperSlide key={index}>
-                        <Skeleton width={160} height={267} containerClassName={cx('wrapper')} style={{ margin: '0 5px 5px 0' }} ></Skeleton>
+                        <Skeleton width={180} height={267} containerClassName={cx('wrapper')} style={{ margin: '0 5px 5px 0' }} ></Skeleton>
                     </SwiperSlide>
                 ))}
             </Swiper></>}

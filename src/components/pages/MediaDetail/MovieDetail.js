@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import classNames from 'classnames/bind';
 import styles from './MovieDetail.module.scss';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import tmdbApi, { category } from '../../../api/tmdbApi';
 import apiConfig from '../../../utils/apiConfig';
 import Button from '../../Button';
@@ -20,6 +20,7 @@ export default function MovieDetail() {
   const [crews, setCrews] = useState([]);
   const [keywords, setKeywords] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
   const fetchApi = async () => {
     setIsLoading(true)
     try {
@@ -62,8 +63,7 @@ export default function MovieDetail() {
     return languages;
   }
   const direc = getDirector();
-
-  const countStar = Math.round(movieDetail.vote_average / 2);
+  const countStar = Math.round(movieDetail.vote_average / 2); 
   const star = [];
   for (var i = 0; i < 5; i++) {
     if (i < countStar) star.push(<FontAwesomeIcon icon={faStar} color='#eea300' key={i}></FontAwesomeIcon>)
@@ -153,9 +153,12 @@ export default function MovieDetail() {
               </div>
             </div>
           </div>
+          <div className={cx('commentFB')}>
+            <div class="fb-comments" data-href="http://localhost:3000/movie/820232" data-width="500" data-numposts="5"></div>
+          </div>
           <div className={cx('similar')}>
             <div className={cx('similarTitle')}><FontAwesomeIcon icon={faStar} color='#eea300'></FontAwesomeIcon><div>Similar movie</div></div>
-            <Slider similar id={id} countItem='4'></Slider>
+            <Slider similar id={id} countItem='3'></Slider>
           </div>
         </> : <><MovieDetailSkeleton></MovieDetailSkeleton></>
       }

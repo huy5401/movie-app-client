@@ -8,6 +8,7 @@
     img {
         width: 30%;
         border: 1px solid white;
+        height: 97px;
     }
 }
 .content-right{
@@ -16,6 +17,9 @@
         margin-bottom: 5px;
         color: white;
         font-weight: 400;
+        &:hover{
+            color: var(--active);
+        }
     }
     .year{
         color: #BABABA;

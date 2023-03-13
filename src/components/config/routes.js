@@ -1,7 +1,8 @@
 const routes = {
     home: '/',
     genre: '/genre/:genreId',
-    popular: '/movies/popular',
+    popular: '/popular',
+    upcomming: '/upcomming',
     detail: '/movie/:id',
     search: '/search/:keyword'
 }

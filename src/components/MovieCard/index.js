@@ -9,9 +9,13 @@ import apiConfig from '../../utils/apiConfig';
 
 const cx = classNames.bind(styles)
 
-export default function MovieCard({ data }) {
+export default function MovieCard({ data, large = false, className }) {
+    const classes = cx('link-wrap', {
+        [className]: className,
+        large
+    });
     return (
-        <Link to={`/movie/${data.id}`} className={cx('link-wrap')}>
+        <Link to={`/movie/${data.id}`} className={classes}>
             <Card className={cx('movie-card')}>
                 <div className={cx('imgWrapper')}>
                     <Card.Img variant='top' src={data.backdrop_path ? apiConfig.originalImage(data.backdrop_path) : apiConfig.originalImage('/8EgO6oCiUlhiiNeVbRPItZIMQj7.jpg')}></Card.Img>

@@ -11,7 +11,7 @@ export default function DefaultLayout({ children }) {
     <div className={cx('wrapper')}>
       <Header></Header>
       <div className={cx('slider')}>
-        <div className={cx('title-slider')}>PHIM HOT</div>
+        <div className={cx('title-slider')}>HOT FILM</div>
         <Slider hotMovie></Slider>
       </div>
       <div className={cx('container')}>
@@ -20,6 +20,6 @@ export default function DefaultLayout({ children }) {
         </div>
         <Sidebar></Sidebar>
       </div>
-    </div>
+      <div className={cx('fb-comments')} data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="500" data-numposts="5"></div>    </div>
   )
 }

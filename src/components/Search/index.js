@@ -7,11 +7,13 @@ import styles from './Search.module.scss';
 import classNames from 'classnames/bind';
 import React, { useEffect, useState } from 'react';
 import { useDebounce } from '../../hooks';
-import tmdbApi, { category, movieType } from '../../api/tmdbApi';
+import tmdbApi from '../../api/tmdbApi';
 import apiConfig from '../../utils/apiConfig';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles)
 export default function Search() {
+    const navigate = useNavigate();
     const [searchResult, setSearchResult] = useState([]);
     const [searchValue, setSearchValue] = useState("");
     const [showResult, setShowResult] = useState(true);
@@ -31,6 +33,9 @@ export default function Search() {
         }
         fetchApi();
     }, [debounce])
+    const searchHandler = () => {
+        navigate(`/search/${searchValue}`);
+    }
     return (
         <HeadlessTippy
             interactive
@@ -55,7 +60,7 @@ export default function Search() {
                 <input type='text' placeholder='Search movies or actor'
                     onChange={e => { setSearchValue(e.target.value) }}
                     onFocus={() => { setShowResult(true) }}></input>
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onClick={() => searchHandler()}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
             </div>

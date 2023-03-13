@@ -11,7 +11,7 @@ export default function SliderMovieSkeleton() {
     return (
         <Swiper
             spaceBetween={5}
-            slidesPerView={6}
+            slidesPerView={5}
             // onSlideChange={() => console.log('change')}
             onSwiper={(swiper) => { console.log(swiper) }}
             navigation

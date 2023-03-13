@@ -15,18 +15,14 @@ const cx = classNames.bind(styles);
 
 export default function Genre() {
   const { genreId } = useParams();
-  console.log(genreId)
   const [page, setPage] = useState(1)
   const [listMovie, setListMovie] = useState({})
-  const [genre, setGenre] = useState([]);
   const [isLoading, setIsLoading] = useState(false)
   const fetchApi = async () => {
     setIsLoading(true)
     try {
       setIsLoading(true)
       const dataResult = await tmdbApi.discoverMovie({ params: { page: page, sort_by: "popularity.desc", with_genres: genreId } });
-      const dataGenre = await tmdbApi.getGenre();
-      setGenre(dataGenre.genres);
       setListMovie(dataResult)
       setIsLoading(false)
     } catch (error) {
@@ -38,20 +34,12 @@ export default function Genre() {
     setPage(data.selected);
   }
   useEffect(() => {
-    console.log('call useEffect')
     fetchApi();
   }, [page, genreId]);
-  const getNameGenre = () => {
-    for(var i=0; i< genre.length; i++){
-      if(genre[i].id.toString() === genreId ){
-        console.log(genre[i].name)
-        return genre[i].name
-      }
-    }
-  }
+  
   return (
     <div>
-      {!isLoading ? <><>{genre && getNameGenre()}</>
+      {!isLoading ? <>
         <MovieList data={listMovie}></MovieList>
         <ReactPaginate
           breakLabel="..."

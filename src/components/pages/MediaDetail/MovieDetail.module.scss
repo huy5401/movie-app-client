@@ -29,11 +29,12 @@
         display: flex;
         justify-content: space-between;
         background-color: rgba(0,0,0,0.8);
-        bottom: 1.6%;
+        bottom: 1%;
     }
 }
 .detail{
     flex: 1;
+    font-size: 1.5rem;
 }
 .title{
     h2{
@@ -74,6 +75,7 @@
     .reviewMain{
         color: #bbb;
         padding: 10px 0 20px 0;
+        font-size: 1.4rem;
     }
 }
 .tag{
@@ -128,4 +130,8 @@
         font-size: 1.35rem;
         margin-right: 6px;
     }
+}
+.commentFB{
+    width: 100%;
+    min-height: 50px;
 }

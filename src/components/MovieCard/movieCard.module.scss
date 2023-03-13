@@ -23,6 +23,10 @@
     margin-bottom: 12px;
 }
 
+.large {
+    width: 180px;
+}
+
 .movie-card {
     width: 100%;
     border-radius: 5px;
@@ -33,14 +37,16 @@
     .imgWrapper {
         width: 100%;
         height: 100%;
+
         img {
             width: 100%;
             height: 100%;
             border-radius: 5px;
             vertical-align: middle;
             transition: transform .3s ease-in-out;
+
             &:hover {
-                transform: scale(1.4);
+                transform: scale(1.3);
             }
         }
     }

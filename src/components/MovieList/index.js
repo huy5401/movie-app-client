@@ -23,7 +23,6 @@ export default function MovieList({ data, isLoading }) {
           <MovieCard data={movie} key={movie.id}></MovieCard>
         ))
       }
-      
     </div>
   )
 }

@@ -4,6 +4,7 @@ import styles from '../DefaultLayout/DefaultLayout.module.scss'
 import Header from '../DefaultLayout/Header/Header';
 import Sidebar from '../DefaultLayout/Sidebar/Sidebar';
 import genreStyles from './GenreLayout.module.scss';
+import Breadcrumbs from '../../Breadcrumbs';
 
 const st = classNames.bind(genreStyles);
 const cx = classNames.bind(styles);
@@ -12,7 +13,7 @@ export default function GenreLayout({children}) {
     <div className={cx('wrapper')}>
     <Header></Header>
     <div className={st('breadCrumb')}>
-        
+        {/* <Breadcrumbs></Breadcrumbs> */}
     </div>
     <div className={cx('container')}>
       <div className={cx('content')}>
