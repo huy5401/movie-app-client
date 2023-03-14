@@ -3,6 +3,7 @@ import Header from '../DefaultLayout/Header/Header'
 import Sidebar from '../DefaultLayout/Sidebar/Sidebar'
 import styles from '../DefaultLayout/DefaultLayout.module.scss'
 import classNames from 'classnames/bind'
+import Footer from '../DefaultLayout/Footer/Footer'
 
 const cx = classNames.bind(styles)
 export default function MovieDetailLayout({ children }) {
@@ -15,6 +16,7 @@ export default function MovieDetailLayout({ children }) {
         </div>
         <Sidebar></Sidebar>
       </div>
+      <Footer></Footer>
     </div>
   )
 }

@@ -16,13 +16,15 @@
     .title{
         margin-bottom: 5px;
         color: white;
-        font-weight: 400;
+        font-weight: 580;
+        font-size: 1.5rem;
         &:hover{
             color: var(--active);
         }
     }
     .year{
         color: #BABABA;
+        font-size: 1.35rem;
     }
     .rating{
         margin: 10px 0;

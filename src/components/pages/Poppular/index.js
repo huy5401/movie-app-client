@@ -10,8 +10,9 @@ import CardMovieSkeleton from '../../Skeleton/ListMovie/CardMovieSkeleton';
 const cx = classNames.bind(styles)
 export default function Popular() {
 
-    // const {isLoading, popularMovie, fetchApi } = usePopular()
-    const [popularMovie, setPopularMovie] = useState({});
+    // const [popularMovie, setPopularMovie] = useState({});
+    const [popularMovie, setPopularMovie] = useState([]);
+
     const [page, setPage] = useState(1)
     const [isLoading, setIsLoading] = useState(false)
     const fetchApi = async () => {
@@ -21,7 +22,7 @@ export default function Popular() {
             const dataResult = await tmdbApi.getMoviesList(url, { params: { page: page } });
             console.log(dataResult)
             setIsLoading(false)
-            setPopularMovie(dataResult)
+            setPopularMovie(dataResult.results)
         } catch (error) {
             Alert.log("error");
         }

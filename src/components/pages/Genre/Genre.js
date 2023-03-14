@@ -16,14 +16,15 @@ const cx = classNames.bind(styles);
 export default function Genre() {
   const { genreId } = useParams();
   const [page, setPage] = useState(1)
-  const [listMovie, setListMovie] = useState({})
+  // const [listMovie, setListMovie] = useState({})
+  const [listMovie, setListMovie] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const fetchApi = async () => {
     setIsLoading(true)
     try {
       setIsLoading(true)
       const dataResult = await tmdbApi.discoverMovie({ params: { page: page, sort_by: "popularity.desc", with_genres: genreId } });
-      setListMovie(dataResult)
+      setListMovie(dataResult.results)
       setIsLoading(false)
     } catch (error) {
       Alert.log("error");

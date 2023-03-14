@@ -20,6 +20,7 @@
     "querystring-es3": "^0.2.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
+    "react-custom-scrollbars-2": "^4.5.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-loading-skeleton": "^3.1.1",

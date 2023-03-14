@@ -16,6 +16,7 @@ export default function Header() {
   useEffect(() => {
     const fetchApi = async () => {
       const result = await tmdbApi.getGenre();
+      console.log(result);
       items.splice(0, items.length);
       result.genres.map((item, index) => {
         items.push({
@@ -48,14 +49,13 @@ export default function Header() {
           <ul>
             <li><NavLink to='/' className={(nav) => cx('main-menu', { active: nav.isActive })}>Home</NavLink></li>
             <li><NavLink to={routesConfig.popular} className={(nav) => cx('main-menu', { active: nav.isActive })}>popular</NavLink></li>
-            <li><NavLink to='/upcomming' className={(nav) => cx('main-menu', { active: nav.isActive })}>upcomming</NavLink></li>
+            <li><NavLink to={routesConfig.upcomming} className={(nav) => cx('main-menu', { active: nav.isActive })}>upcomming</NavLink></li>
             <li>
-
               <Dropdown
                 rootClassName={cx('listGenre')}
                 placement='bottom'
                 menu={{ items }}
-                overlayClassName={cx('overlayDropdown')}              >
+                overlayClassName={cx('overlayDropdown')}>
                 {/* <NavLink to='/upcomming' className={(nav) => cx('main-menu', { active: nav.isActive })}> */}
                 <Space className={cx('dropdown')}>
                   genres

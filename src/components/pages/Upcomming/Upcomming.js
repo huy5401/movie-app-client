@@ -10,8 +10,8 @@ import CardMovieSkeleton from '../../Skeleton/ListMovie/CardMovieSkeleton';
 const cx = classNames.bind(styles)
 export default function Upcomming() {
 
-    // const {isLoading, popularMovie, fetchApi } = usePopular()
-    const [upcomingMovie,setUpcommingMovie ] = useState({});
+    // const [upcomingMovie,setUpcommingMovie ] = useState({});
+    const [upcomingMovie,setUpcommingMovie ] = useState([]);
     const [page, setPage] = useState(1)
     const [isLoading, setIsLoading] = useState(false)
     const fetchApi = async () => {
@@ -21,7 +21,7 @@ export default function Upcomming() {
             const dataResult = await tmdbApi.getMoviesList(url, { params: { page: page } });
             console.log(dataResult)
             setIsLoading(false)
-            setUpcommingMovie(dataResult)
+            setUpcommingMovie(dataResult.results)
         } catch (error) {
             Alert.log("error");
         }

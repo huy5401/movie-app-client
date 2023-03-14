@@ -1,0 +1,33 @@
+.wrapper{
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #333333;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+.content{
+    color: #bbb;
+    font-size: 1.4rem;
+    width: 980px;
+    margin: 0 auto;
+}
+.copyright{
+    display: flex;
+    width: 60%;
+    justify-content: space-evenly;
+    a{
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover{
+            color: var(--active);
+        }
+    }
+}
+.icon-contact{
+    width: 30%;
+    margin: 0 auto;
+}
+.social-icon{
+    margin: 20px;
+    font-size: 25px;
+}

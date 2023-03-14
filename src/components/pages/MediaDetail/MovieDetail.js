@@ -11,6 +11,7 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faShare } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import MovieDetailSkeleton from '../../Skeleton/MovieDetail/MovieDetailSkeleton';
+import Scrollbars from 'react-custom-scrollbars-2';
 const cx = classNames.bind(styles);
 
 export default function MovieDetail() {
@@ -89,6 +90,7 @@ export default function MovieDetail() {
                 <p>{movieDetail.first_air_date || movieDetail.release_date}</p>
               </div>
               <div className={cx('detailContent')}>
+                <Scrollbars width={100} height={100} autoHide autoHideTimeout={2000}>
                 <div className={cx('detailItem')}>
                   <dd className={cx('detailTitle')}>Status:</dd>
                   <dt>{movieDetail.status || "Unkown"}</dt>
@@ -125,6 +127,7 @@ export default function MovieDetail() {
                   <dd className={cx('detailTitle')}>Actors:</dd>
                   <dt>{actors && getProp(actors).toString()}</dt>
                 </div>
+                </Scrollbars>
               </div>
               <div className={cx('rating')}>
                 <div className={cx('action')}>

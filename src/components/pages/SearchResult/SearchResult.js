@@ -8,7 +8,8 @@ import CardMovieSkeleton from '../../Skeleton/ListMovie/CardMovieSkeleton';
 
 export default function SearchResult() {
     const [isLoading, setIsLoading] = useState(true);
-    const [searchResult, setSearchResult] = useState({});
+    // const [searchResult, setSearchResult] = useState({});
+    const [searchResult, setSearchResult] = useState([]);
     const { keyword } = useParams();
     console.log(keyword)
     const fetchApi = async () => {
@@ -18,7 +19,7 @@ export default function SearchResult() {
             const result = await tmdbApi.search(cate, keyword);
             console.log(result)
             setIsLoading(false);
-            setSearchResult(result);
+            setSearchResult(result.results);
         } catch (error) {
             Alert.log("error");
         }
@@ -34,7 +35,7 @@ export default function SearchResult() {
             <div style={{color:'white'}}>{`Kết quả tìm kiếm cho: "${keyword}"`}</div>
             <div>
                 {!isLoading ? <>{
-                    (searchResult.results.length !== 0) ? <MovieList data={searchResult}></MovieList> : <div style={{color:'white'}}>Không có kết quả</div>
+                    (searchResult.length !== 0) ? <MovieList data={searchResult}></MovieList> : <div style={{color:'white'}}>Không có kết quả</div>
                 }
                     
                 </>

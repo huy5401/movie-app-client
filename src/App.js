@@ -3,6 +3,7 @@ import { publicRoutes } from './routes/index';
 import { DefaultLayout } from './components/Layout';
 import { Fragment } from 'react';
 import { SkeletonTheme } from 'react-loading-skeleton';
+import Scrollbars from 'react-custom-scrollbars-2';
 function App() {
   return (
     <Router>

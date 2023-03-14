@@ -4,6 +4,7 @@ import Sidebar from './Sidebar/Sidebar'
 import styles from './DefaultLayout.module.scss'
 import classNames from 'classnames/bind'
 import Slider from '../../Slider'
+import Footer from './Footer/Footer'
 
 const cx = classNames.bind(styles)
 export default function DefaultLayout({ children }) {
@@ -20,6 +21,7 @@ export default function DefaultLayout({ children }) {
         </div>
         <Sidebar></Sidebar>
       </div>
-      <div className={cx('fb-comments')} data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="500" data-numposts="5"></div>    </div>
+      <Footer></Footer>
+    </div>
   )
 }
