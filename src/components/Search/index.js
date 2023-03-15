@@ -10,6 +10,7 @@ import { useDebounce } from '../../hooks';
 import tmdbApi from '../../api/tmdbApi';
 import apiConfig from '../../utils/apiConfig';
 import { useNavigate } from 'react-router-dom';
+import Scrollbars from 'react-custom-scrollbars-2';
 
 const cx = classNames.bind(styles)
 export default function Search() {
@@ -46,11 +47,13 @@ export default function Search() {
                     <PopperWrapper>
                         <div className={cx('search-result-title')}>Search result for: <p>"{searchValue}"</p></div>
                         <div className={cx('searchResultContent')}>
-                            {searchResult.map((result) => (
-                                <SearchFilmItem key={result.id} data={result}></SearchFilmItem>
-                            ))}
+                            <Scrollbars autoHide autoHideTimeout={2000}>
+                                {searchResult.map((result) => (
+                                    <SearchFilmItem key={result.id} data={result}></SearchFilmItem>
+                                ))}
+                            </Scrollbars>
                         </div>
-                        {searchResult.length > 6 ? <div className={cx("seeMore")}>See more...</div> : ""}
+                        {searchResult.length > 6 ? <div className={cx("seeMore")} onClick={() => searchHandler()}>See more...</div> : ""}
                     </PopperWrapper>
                 </div>
 

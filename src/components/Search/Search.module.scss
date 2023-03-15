@@ -64,13 +64,16 @@
     }
 }
 .searchResultContent{
-    max-height: 300px;
-    overflow-y: auto;
+    height: 300px;
+    
 }
 
 .seeMore{
-    color: var(--active);
+    color: #bbb;
     font-size: 1.7rem;
     padding: 5px 0;
-    
+    cursor: pointer;
+    &:hover{
+        color: var(--active);
+    }
 }
