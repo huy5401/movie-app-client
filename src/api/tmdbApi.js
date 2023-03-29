@@ -1,5 +1,4 @@
-import axiosClient from "../utils/axiosConfig"
-
+import {axiosClient}  from "../utils/axiosConfig"
 
 export const category = {
     movie: 'movie',

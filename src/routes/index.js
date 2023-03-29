@@ -7,6 +7,8 @@ import { MovieDetailLayout } from "../components/Layout"
 import GenreLayout from "../components/Layout/GenreLayout/GenreLayout"
 import SearchResult from "../components/pages/SearchResult/SearchResult"
 import Upcomming from "../components/pages/Upcomming/Upcomming"
+import Login from "../components/pages/Login/Login"
+import Register from "../components/pages/Register/Register"
 const publicRoutes = [
     {path: routesConfig.home , component: Home},
     {path: routesConfig.genre, component: Genre, layout: GenreLayout},
@@ -14,6 +16,8 @@ const publicRoutes = [
     {path: routesConfig.upcomming, component: Upcomming, layout: GenreLayout},
     {path: routesConfig.detail, component: MovieDetail, layout: MovieDetailLayout},
     {path: routesConfig.search, component: SearchResult, layout: GenreLayout},
+    {path: routesConfig.login, component: Login, layout: null},
+    {path: routesConfig.register, component: Register, layout: null}
 ]
 
 const privateRoutes = []

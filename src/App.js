@@ -3,10 +3,8 @@ import { publicRoutes } from './routes/index';
 import { DefaultLayout } from './components/Layout';
 import { Fragment, useEffect, useState } from 'react';
 import { SkeletonTheme } from 'react-loading-skeleton';
-import Scrollbars from 'react-custom-scrollbars-2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleUp, faArrowUp } from '@fortawesome/free-solid-svg-icons';
-import { faUps } from '@fortawesome/free-brands-svg-icons';
 function App() {
   const [showScrollToTop, seTShowScrollToTop] = useState(false);
   useEffect(() => {

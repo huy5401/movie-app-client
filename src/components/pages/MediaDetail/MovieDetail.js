@@ -12,6 +12,7 @@ import { faShare } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import MovieDetailSkeleton from '../../Skeleton/MovieDetail/MovieDetailSkeleton';
 import Scrollbars from 'react-custom-scrollbars-2';
+import { Modal } from 'antd';
 const cx = classNames.bind(styles);
 
 export default function MovieDetail() {
@@ -20,8 +21,19 @@ export default function MovieDetail() {
   const [actors, setActors] = useState([]);
   const [crews, setCrews] = useState([]);
   const [keywords, setKeywords] = useState([]);
+  const [videoTrailer, setVideoTrailer] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   const fetchApi = async () => {
     setIsLoading(true)
     try {
@@ -64,7 +76,7 @@ export default function MovieDetail() {
     return languages;
   }
   const direc = getDirector();
-  const countStar = Math.round(movieDetail.vote_average / 2); 
+  const countStar = Math.round(movieDetail.vote_average / 2);
   const star = [];
   for (var i = 0; i < 5; i++) {
     if (i < countStar) star.push(<FontAwesomeIcon icon={faStar} color='#eea300' key={i}></FontAwesomeIcon>)
@@ -80,7 +92,7 @@ export default function MovieDetail() {
             <div className={cx('backdrop')}>
               <img src={apiConfig.originalImage(movieDetail.backdrop_path)} alt='backdrop'></img>
               <div className={cx('btnGroup')}>
-                <Button blue medium>Download</Button>
+                <Button blue medium onClick={showModal}>Trailer</Button>
                 <Button red medium>Watch</Button>
               </div>
             </div>
@@ -91,42 +103,42 @@ export default function MovieDetail() {
               </div>
               <div className={cx('detailContent')}>
                 <Scrollbars width={100} height={100} autoHide autoHideTimeout={2000}>
-                <div className={cx('detailItem')}>
-                  <dd className={cx('detailTitle')}>Status:</dd>
-                  <dt>{movieDetail.status || "Unkown"}</dt>
-                </div>
-                <div className={cx('detailItem')}>
-                  <dd className={cx('detailTitle')}>Released date:</dd>
-                  <dt>{movieDetail.first_air_date || movieDetail.release_date}</dt>
-                </div>
-                <div className={cx('detailItem')}>
-                  <dd className={cx('detailTitle')}>Runtime:</dd>
-                  <dt>{movieDetail.runtime || "Unkown"} minutes</dt>
-                </div>
-                <div className={cx('detailItem')}>
-                  <dd className={cx('detailTitle')}>Language:</dd>
-                  <dt>{movieDetail.spoken_languages && getLanguages().toString()}</dt>
-                </div>
-                <div className={cx('detailItem')}>
-                  <dd className={cx('detailTitle')}>Countries:</dd>
-                  <dt>{movieDetail.production_countries && getProp(movieDetail.production_countries).toString()}</dt>
-                </div>
-                <div className={cx('detailItem')}>
-                  <dd className={cx('detailTitle')}>Companies:</dd>
-                  <dt>{movieDetail.production_companies && getProp(movieDetail.production_companies).toString()}</dt>
-                </div>
-                <div className={cx('detailItem')}>
-                  <dd className={cx('detailTitle')}>Genres:</dd>
-                  <dt>{movieDetail.genres && getProp(movieDetail.genres).toString()}</dt>
-                </div>
-                <div className={cx('detailItem')}>
-                  <dd className={cx('detailTitle')}>Director:</dd>
-                  <dt>{direc ? direc.name : "Unknown"}</dt>
-                </div>
-                <div className={cx('detailItem')}>
-                  <dd className={cx('detailTitle')}>Actors:</dd>
-                  <dt>{actors && getProp(actors).toString()}</dt>
-                </div>
+                  <div className={cx('detailItem')}>
+                    <dd className={cx('detailTitle')}>Status:</dd>
+                    <dt>{movieDetail.status || "Unkown"}</dt>
+                  </div>
+                  <div className={cx('detailItem')}>
+                    <dd className={cx('detailTitle')}>Released date:</dd>
+                    <dt>{movieDetail.first_air_date || movieDetail.release_date}</dt>
+                  </div>
+                  <div className={cx('detailItem')}>
+                    <dd className={cx('detailTitle')}>Runtime:</dd>
+                    <dt>{movieDetail.runtime || "Unkown"} minutes</dt>
+                  </div>
+                  <div className={cx('detailItem')}>
+                    <dd className={cx('detailTitle')}>Language:</dd>
+                    <dt>{movieDetail.spoken_languages && getLanguages().toString()}</dt>
+                  </div>
+                  <div className={cx('detailItem')}>
+                    <dd className={cx('detailTitle')}>Countries:</dd>
+                    <dt>{movieDetail.production_countries && getProp(movieDetail.production_countries).toString()}</dt>
+                  </div>
+                  <div className={cx('detailItem')}>
+                    <dd className={cx('detailTitle')}>Companies:</dd>
+                    <dt>{movieDetail.production_companies && getProp(movieDetail.production_companies).toString()}</dt>
+                  </div>
+                  <div className={cx('detailItem')}>
+                    <dd className={cx('detailTitle')}>Genres:</dd>
+                    <dt>{movieDetail.genres && getProp(movieDetail.genres).toString()}</dt>
+                  </div>
+                  <div className={cx('detailItem')}>
+                    <dd className={cx('detailTitle')}>Director:</dd>
+                    <dt>{direc ? direc.name : "Unknown"}</dt>
+                  </div>
+                  <div className={cx('detailItem')}>
+                    <dd className={cx('detailTitle')}>Actors:</dd>
+                    <dt>{actors && getProp(actors).toString()}</dt>
+                  </div>
                 </Scrollbars>
               </div>
               <div className={cx('rating')}>
@@ -136,7 +148,7 @@ export default function MovieDetail() {
                 </div>
                 <div className={cx('vote')}>
                   <div className={cx('star')}>{star}</div>
-                  <div className={cx('voteCount')}>{`(${movieDetail.vote_count} votes)` }</div>
+                  <div className={cx('voteCount')}>{`(${movieDetail.vote_count} votes)`}</div>
                 </div>
               </div>
             </div>
@@ -150,7 +162,7 @@ export default function MovieDetail() {
               <span className={cx('tagLabel')}>Tags</span>
               <div className={cx('tagsIcon')}></div>
               <div className={cx('keywords')}>
-                { keywords && keywords.slice(0,6).map( keyword => (
+                {keywords && keywords.slice(0, 6).map(keyword => (
                   <div key={keyword.id} className={cx('keywordItem')}>{keyword.name}</div>
                 ))}
               </div>
@@ -163,6 +175,11 @@ export default function MovieDetail() {
             <div className={cx('similarTitle')}><FontAwesomeIcon icon={faStar} color='#eea300'></FontAwesomeIcon><div>Similar movie</div></div>
             <Slider similar id={id} countItem='3'></Slider>
           </div>
+          <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+          </Modal>
         </> : <><MovieDetailSkeleton></MovieDetailSkeleton></>
       }
 

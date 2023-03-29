@@ -4,7 +4,9 @@ const routes = {
     popular: '/popular',
     upcomming: '/upcomming',
     detail: '/movie/:id',
-    search: '/search/:keyword'
+    search: '/search/:keyword',
+    login: '/login',
+    register: '/register'
 }
 
 export default routes;
