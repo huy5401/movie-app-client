@@ -11,9 +11,9 @@ const axiosClient = axios.create({
     }
 })
 const axiosMovieChill = axios.create({
-    baseURL: 'http://localhost:3001/'
+    baseURL: 'http://localhost:3001/api/'
 })
-axiosClient.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem('accessToken')}`;
+axiosMovieChill.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem('accessToken')}`;
 // paramsSerializer: params => qs.stringify({...params, 'api-key': apiConfig.apiKey}, {arrayFormat:'brackets'})
 
 axiosClient.interceptors.request.use(async (config) => config);
@@ -38,13 +38,13 @@ axiosMovieChill.interceptors.response.use((response) => {
     console.log(originalRequest);
     if (error.response.status === 401 && !originalRequest._retry) {
         originalRequest._retry = true;
-        const response = await axios.post("http://localhost:3001/refesh", {
+        const response = await axiosMovieChill.post("refesh", {
             refeshToken: localStorage.getItem('refeshToken')
         });
-        const access_token = response.data;
-        console.log(access_token);
+        const access_token = response;
+        console.log("access token axios: ",access_token);
         localStorage.setItem('accessToken', access_token)
-        axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem('accessToken')}`;
+        axiosMovieChill.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem('accessToken')}`;
         originalRequest.headers = {
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         };

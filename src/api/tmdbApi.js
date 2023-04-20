@@ -1,4 +1,4 @@
-import {axiosClient}  from "../utils/axiosConfig"
+import { axiosClient } from "../utils/axiosConfig"
 
 export const category = {
     movie: 'movie',
@@ -31,7 +31,7 @@ export const timeWindow = {
 }
 
 const tmdbApi = {
-    
+
     getMoviesList: async (type, options = {}) => {
         const url = 'movie/' + type;
         return await axiosClient.get(url, options)
@@ -65,47 +65,64 @@ const tmdbApi = {
     //     const url = cate + '/' + id + '/similar';
     //     return axiosClient.get(url, { params: {} })
     // },
-    getTrending: async (mediaType, timeWindow, options = {} ) => {
+    getTrending: async (mediaType, timeWindow, options = {}) => {
         const url = `trending/${mediaType}/${timeWindow}`;
-        return await axiosClient.get(url,options)
+        return await axiosClient.get(url, options)
     },
 
-    getSimilar: async (id, options = {} ) => {
+    getSimilar: async (id, options = {}) => {
         let url = `movie/${id}/similar`;
-        let response = await axiosClient.get(url, options);
-        if(response === 404){
-            url = `tv/${id}/similar`;
+        let response
+        try {
+            response = await axiosClient.get(url, options);
+        } catch (error) {
+            if (error.response.status=== 404) {
+                url = `tv/${id}/similar`;
+            }
             response = await axiosClient.get(url, options);
         }
         return response
     },
-    getMostPopular: async (options = {} ) => {
+    getMostPopular: async (options = {}) => {
         const url = `discover/movie?sort_by=popularity.desc`;
-        return await axiosClient.get(url,options)
+        return await axiosClient.get(url, options)
     },
     getActor: async (id, options = {}) => {
-        let url = `movie/${id}/credits`
-        let response = await axiosClient.get(url, options);
-        if(response === 404){
-            url = `tv/${id}/credits`;
+        let url = `movie/${id}/credits`;
+        let response
+        try {
+            response = await axiosClient.get(url, options);
+        } catch (error) {
+            if (error.response.status=== 404) {
+                url = `tv/${id}/credits`;
+            }
             response = await axiosClient.get(url, options);
         }
         return response
+        
     },
     getKeywords: async (id, options = {}) => {
-        let url = `movie/${id}/keywords`
-        let response = await axiosClient.get(url, options);
-        if(response === 404){
-            url = `tv/${id}/keywords`;
+        let url = `movie/${id}/keywords`;
+        let response
+        try {
+            response = await axiosClient.get(url, options);
+        } catch (error) {
+            if (error.response.status=== 404) {
+                url = `tv/${id}/keywords`;
+            }
             response = await axiosClient.get(url, options);
         }
-        return response;
+        return response
     },
     detail: async (id, options = {}) => {
         let url = `movie/${id}`;
-        let response = await axiosClient.get(url, options);
-        if(response === 404){
-            url = `tv/${id}`;
+        let response
+        try {
+            response = await axiosClient.get(url, options);
+        } catch (error) {
+            if (error.response.status=== 404) {
+                url = `tv/${id}`;
+            }
             response = await axiosClient.get(url, options);
         }
         return response
@@ -114,11 +131,10 @@ const tmdbApi = {
         const url = "genre/movie/list";
         return await axiosClient.get(url)
     },
-    discoverMovie:async (options = {}) => {
+    discoverMovie: async (options = {}) => {
         const url = "discover/movie";
         return await axiosClient.get(url, options)
     },
-    
 }
 
 export default tmdbApi;

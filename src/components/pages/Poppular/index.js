@@ -6,6 +6,7 @@ import MovieList from '../../MovieList';
 import styles from '../../MovieList/MovieList.module.scss'
 import classNames from 'classnames/bind';
 import CardMovieSkeleton from '../../Skeleton/ListMovie/CardMovieSkeleton';
+import { axiosMovieChill } from '../../../utils/axiosConfig';
 
 const cx = classNames.bind(styles)
 export default function Popular() {
@@ -19,7 +20,12 @@ export default function Popular() {
         setIsLoading(true)
         const url = movieType.popular;
         try {
-            const dataResult = await tmdbApi.getMoviesList(url, { params: { page: page } });
+            // const dataResult = await tmdbApi.getMoviesList(url, { params: { page: page } });
+            const dataResult = await axiosMovieChill.get('movies/popular', {
+                params: {
+                    page: page
+                }
+            })
             console.log(dataResult)
             setIsLoading(false)
             setPopularMovie(dataResult.results)

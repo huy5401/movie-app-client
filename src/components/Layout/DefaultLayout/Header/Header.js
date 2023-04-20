@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import styles from './Header.module.scss'
 import classNames from 'classnames/bind'
 import images from '../../../../assets/images'
-import Button from '../../../Button';
 import { Link, NavLink } from 'react-router-dom';
 import Search from '../../../Search';
 import routesConfig from '../../../config/routes';

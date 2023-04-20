@@ -1,21 +1,23 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { publicRoutes } from './routes/index';
 import { DefaultLayout } from './components/Layout';
 import { Fragment, useEffect, useState } from 'react';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleUp, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import Login from './components/pages/Login/Login';
+import PrivateRoute from './components/common/PrivateRoute';
 function App() {
   const [showScrollToTop, seTShowScrollToTop] = useState(false);
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if(window.scrollY > 300){
+      if (window.scrollY > 300) {
         seTShowScrollToTop(true);
-      }else{
+      } else {
         seTShowScrollToTop(false);
       }
     })
-  },[])
+  }, [])
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -28,6 +30,7 @@ function App() {
       <div className="App">
         <SkeletonTheme baseColor='#313131' highlightColor='#525252'>
           <Routes>
+            <Route path='/login' index element={<Login />} />
             {publicRoutes.map((route, index) => {
               const Page = route.component;
               let Layout = DefaultLayout;
@@ -37,12 +40,16 @@ function App() {
                 Layout = Fragment;
               }
               return <Route key={index} path={route.path} element={
-                <Layout>
-                  <Page></Page>
-                </Layout>
+                <PrivateRoute>
+                  <Layout>
+                    <Page></Page>
+                  </Layout>
+                </PrivateRoute>
               }></Route>
-            })}
+            })
+            }
           </Routes>
+
         </SkeletonTheme>
         {showScrollToTop && (<button style={{
           position: 'fixed',
@@ -53,7 +60,7 @@ function App() {
           fontSize: '15px',
           border: 'none',
           backgroundColor: 'white'
-          
+
         }}
           onClick={scrollToTop}
         ><FontAwesomeIcon icon={faAngleUp}></FontAwesomeIcon></button>)}

@@ -18,7 +18,7 @@ export default function Login() {
   const loginHandler = async e => {
     e.preventDefault();
     try {
-      const res = await axiosMovieChill.post("http://localhost:3001/login", {
+      const res = await axiosMovieChill.post("http://localhost:3001/api/login", {
         username: username,
         password: password,
       })

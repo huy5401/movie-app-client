@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import classNames from 'classnames/bind';
 import styles from './MovieDetail.module.scss';
-import { useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import tmdbApi, { category } from '../../../api/tmdbApi';
 import apiConfig from '../../../utils/apiConfig';
 import Button from '../../Button';
@@ -24,7 +24,6 @@ export default function MovieDetail() {
   const [videoTrailer, setVideoTrailer] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const location = useLocation();
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -93,7 +92,9 @@ export default function MovieDetail() {
               <img src={apiConfig.originalImage(movieDetail.backdrop_path)} alt='backdrop'></img>
               <div className={cx('btnGroup')}>
                 <Button blue medium onClick={showModal}>Trailer</Button>
-                <Button red medium>Watch</Button>
+                <Link to={`/watch/${id}`}>
+                  <Button red medium >Watch</Button>
+                </Link>
               </div>
             </div>
             <div className={cx('detail')}>
