@@ -23,9 +23,9 @@ export default function Login() {
         password: password,
       })
       const { accessToken, refeshToken } = res;
-      console.log(accessToken)
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refeshToken', refeshToken);
+      localStorage.setItem('access_token', accessToken);
+      localStorage.setItem('refesh_token', refeshToken);
+      localStorage.setItem('user_id', res.user.id)
       navigate('/');
     } catch (error) {
       setErrorMessage(error.response.data);

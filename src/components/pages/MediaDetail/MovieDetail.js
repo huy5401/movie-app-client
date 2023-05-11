@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import classNames from 'classnames/bind';
 import styles from './MovieDetail.module.scss';
-import { Link, useLocation, useParams } from 'react-router-dom';
-import tmdbApi, { category } from '../../../api/tmdbApi';
+import { Link, useParams } from 'react-router-dom';
+import tmdbApi from '../../../api/tmdbApi';
 import apiConfig from '../../../utils/apiConfig';
 import Button from '../../Button';
 import Slider from '../../Slider';
@@ -13,6 +13,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import MovieDetailSkeleton from '../../Skeleton/MovieDetail/MovieDetailSkeleton';
 import Scrollbars from 'react-custom-scrollbars-2';
 import { Modal } from 'antd';
+import Comment from '../../Comment/Comment';
 const cx = classNames.bind(styles);
 
 export default function MovieDetail() {
@@ -168,9 +169,6 @@ export default function MovieDetail() {
                 ))}
               </div>
             </div>
-          </div>
-          <div className={cx('commentFB')}>
-            <div class="fb-comments" data-href="http://localhost:3000/movie/820232" data-width="500" data-numposts="5"></div>
           </div>
           <div className={cx('similar')}>
             <div className={cx('similarTitle')}><FontAwesomeIcon icon={faStar} color='#eea300'></FontAwesomeIcon><div>Similar movie</div></div>

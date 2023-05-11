@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import tmdbApi from '../../../api/tmdbApi';
 import Slider from '../../Slider';
+import Comment from '../../Comment/Comment';
 const cx = classNames.bind(styles);
 export default function Watch() {
     const { id } = useParams();
@@ -30,10 +31,9 @@ export default function Watch() {
         fetchApi();
     }, [id])
 
-    console.log(movie)
     return (
         <div className={cx('wrraper')}>
-            <div className={cx('video')}>
+            {/* <div className={cx('video')}>
                 <iframe
                     title="My Movie"
                     src={urlMovie}
@@ -42,7 +42,7 @@ export default function Watch() {
                     allow="autoplay; fullscreen; picture-in-picture"
                     frameBorder='0'
                 />
-            </div>
+            </div> */}
             <div className={cx('infor')}>
                 {
                     !isLoading ? <>
@@ -58,7 +58,7 @@ export default function Watch() {
                 }
 
             </div>
-            <div className={cx('comment')}></div>
+            <Comment></Comment>
             <div className={cx('similar')}>
                 <div className={cx('similarTitle')}><FontAwesomeIcon icon={faStar} color='#eea300'></FontAwesomeIcon><div style={{color: 'white'}}>Maybe you want to watch</div></div>
                 <Slider similar id={id}></Slider>
