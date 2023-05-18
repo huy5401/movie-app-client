@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Register.module.scss';
 import { axiosMovieChill } from '../../../utils/axiosConfig';
@@ -8,8 +8,9 @@ import {
     Form,
     Input,
     Select,
+    message,
 } from 'antd';
-
+import queryString from 'query-string';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -45,31 +46,53 @@ const onFinish = (values) => {
     console.log('Received values of form: ', values);
 };
 
-
-
-
 export default function Register() {
+    const [messageApi, contextHolder] = message.useMessage();
     const [form] = Form.useForm();
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirm, setConfirm] = useState("");
     const navigate = useNavigate();
-
-    const registerHandler = async (e) => {
+    const registerHandler = async (data) => {
+        try {
+            const res = await axiosMovieChill.post('/signup', data)
+            if (res.status === 200) {
+                messageApi.success(res.message);
+                // navigate('/login');
+            } else {
+                messageApi.error(res.message);
+            }
+        } catch (error) {
+            messageApi.error("Register fail !!!");
+        }
+    }
+    useEffect(() => {
+        const query = queryString.parse(window.location.search);
+        if (query) {
+            if (query.resultCode === "0") {
+                const data = JSON.parse(atob(query.extraData));
+                registerHandler(data);
+                setTimeout(() => {
+                    navigate('/login');
+                }, 2000);
+            }
+        }
+    }, []);
+    const paymentHandler = async (e) => {
         e.preventDefault();
-        const res = await axiosMovieChill.post('/signup',{
-           email: email,
-           username: username,
-           password: password,
-           passwordConfirmation: confirm
-        })
-        console.log(res);
-        navigate('/login');
-        
+        const data = {
+            email: email,
+            username: username,
+            password: password,
+            passwordConfirmation: confirm
+        }
+        const res = await axiosMovieChill.post('/payment', data);
+        window.location.href = res.payUrl
     }
     return (
         <div className={cx('wrapper')}>
+            {contextHolder}
             <div style={{ fontSize: '2rem', textAlign: 'center', paddingBottom: '20px' }}>SIGN UP</div>
             <Form
                 {...formItemLayout}
@@ -94,7 +117,7 @@ export default function Register() {
                         },
                     ]}
                 >
-                    <Input  value={email} onChange={e => setEmail(e.target.value)}/>
+                    <Input value={email} onChange={e => setEmail(e.target.value)} />
                 </Form.Item>
 
                 <Form.Item
@@ -103,7 +126,7 @@ export default function Register() {
                     tooltip="What do you want others to call you?"
                     rules={[{ required: true, message: 'Please input your username!', whitespace: true }]}
                 >
-                    <Input value={username} onChange={e => setUsername(e.target.value)}/>
+                    <Input value={username} onChange={e => setUsername(e.target.value)} />
                 </Form.Item>
 
                 <Form.Item
@@ -117,7 +140,7 @@ export default function Register() {
                     ]}
                     hasFeedback
                 >
-                    <Input.Password value={password} onChange={e => setPassword(e.target.value)}/>
+                    <Input.Password value={password} onChange={e => setPassword(e.target.value)} />
                 </Form.Item>
 
                 <Form.Item
@@ -140,7 +163,7 @@ export default function Register() {
                         }),
                     ]}
                 >
-                    <Input.Password value={confirm} onChange={e => setConfirm(e.target.value)}/>
+                    <Input.Password value={confirm} onChange={e => setConfirm(e.target.value)} />
                 </Form.Item>
 
 
@@ -161,7 +184,7 @@ export default function Register() {
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout} >
                     <div style={{ width: '100%' }}>
-                        <Button type="primary" htmlType="submit" style={{marginLeft: '20px'}} onClick={registerHandler}>
+                        <Button type="primary" htmlType="submit" style={{ marginLeft: '20px' }} onClick={paymentHandler}>
                             Register
                         </Button>
                     </div>

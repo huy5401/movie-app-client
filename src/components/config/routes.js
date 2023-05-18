@@ -8,6 +8,7 @@ const routes = {
     login: '/login',
     register: '/register',
     watch: '/watch/:id',
+    paymentConfirm: '/payment/confirm'
 }
 
 export default routes;

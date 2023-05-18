@@ -9,6 +9,7 @@ import SearchResult from "../components/pages/SearchResult/SearchResult"
 import Upcomming from "../components/pages/Upcomming/Upcomming"
 import Register from "../components/pages/Register/Register"
 import Watch from "../components/pages/Watch/Watch"
+import PaymentConfirm from "../components/pages/PaymentConfirm"
 const publicRoutes = [
     {path: routesConfig.home , component: Home},
     {path: routesConfig.genre, component: Genre, layout: GenreLayout},
@@ -17,7 +18,8 @@ const publicRoutes = [
     {path: routesConfig.detail, component: MovieDetail, layout: MovieDetailLayout},
     {path: routesConfig.search, component: SearchResult, layout: GenreLayout},
     {path: routesConfig.watch, component: Watch, layout: WatchLayout},
-    {path: routesConfig.register, component: Register, layout: null}
+    {path: routesConfig.register, component: Register, layout: null},
+    {path: routesConfig.paymentConfirm, component: PaymentConfirm, layout: null}
 ]
 
 const privateRoutes = []
